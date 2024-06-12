@@ -5,14 +5,19 @@ import "./app.css";
 import Router from "preact-router";
 import Continent from "./pages/Continent";
 import Countries from "./pages/Countries";
+import { QueryClientProvider, QueryClient } from "@preact-signals/query";
+
+const queryClient = new QueryClient();
 
 export function App() {
   return (
     <>
-      <Router>
-        <Countries path="/" />
-        <Continent path="/:continent" />
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Countries path="/" />
+          <Continent path="/:continent" />
+        </Router>
+      </QueryClientProvider>
     </>
   );
 }
