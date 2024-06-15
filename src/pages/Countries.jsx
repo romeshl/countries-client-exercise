@@ -4,7 +4,7 @@ import { useQuery$ } from "@preact-signals/query";
 
 const Countries = () => {
   const fetchCountries = async () => {
-    const results = await fetch("https://af-countries-api.azurewebsites.net");
+    const results = await fetch("https://world-api-backend.azurewebsites.net/oceania");
     const resultsJson = results.json();
     console.log("fetch", resultsJson);
     return resultsJson;
@@ -25,8 +25,8 @@ const Countries = () => {
         <b>There's an error: {error.message}</b>
       ) : data ? (
         <ul>
-          {data.map((country) => (
-            <li key={country.Code}>{country.Name}</li>
+          {data.map((country, index) => (
+            <li key={index}>{country.name}</li>
           ))}
         </ul>
       ) : null}
